@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 import { calcularMarca, obtenerDiferenciaYear, obtenerPlan } from "../helper";
 
 const Campo = styled.div`
@@ -112,7 +113,7 @@ const Formulario = ({ guardarResumen, guardarCargando }) => {
       //Pasa información al componente principal
       guardarResumen({
         //Comentario: en el caso de "datos" no se hace falta poner a que se tiene que igualar porque ya definimos "datos" con anterioridad. Automaticamente se pasan las propiedades "marca", "year" y "plan"
-        cotizacion: resultado,
+        cotizacion: Number(resultado),
         datos,
       });
     }, 3000);
@@ -170,6 +171,11 @@ const Formulario = ({ guardarResumen, guardarCargando }) => {
       <Boton type="submit">Cotizar</Boton>
     </form>
   );
+};
+
+Formulario.prototype = {
+  guardarResumen: PropTypes.func.isRequired,
+  guardarCargando: PropTypes.func.isRequired,
 };
 
 export default Formulario;

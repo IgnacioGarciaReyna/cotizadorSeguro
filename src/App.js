@@ -44,7 +44,7 @@ function App() {
         {/*Podría ser así, pero no queremos llenar todo de ternarios: {datos ? <Resumen /> : null} */}
         <Resumen datos={datos} />
 
-        {!cargando ? <Resultado cotizacion={cotizacion} /> : null}
+        {!cargando ? <Resultado cotizacion={cotizacion} /> : null }
       </ContenedorFormulario>
     </Contenedor>
   );
