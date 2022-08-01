@@ -52,7 +52,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Formulario = () => {
+const Formulario = ({guardarResumen}) => {
   const [datos, guardarDatos] = useState({
     marca: "",
     year: "",
@@ -103,7 +103,11 @@ const Formulario = () => {
     const incrementoPlan = obtenerPlan(plan);
     resultado = parseFloat(incrementoPlan * resultado).toFixed(2);
 
-    //Total
+    //Comentario: en el caso de "datos" no se hace falta poner a que se tiene que igualar porque ya definimos "datos" con anterioridad. Automaticamente se pasan las propiedades "marca", "year" y "plan"
+    guardarResumen({
+      cotizacion: resultado,
+      datos
+    })
   };
 
   return (
