@@ -1,3 +1,9 @@
+//Se utiliza un helper para usar
+//El código del comentario queda mas ligero, menos cargado
+//Las funciones se pueden utilizar en varios archivos si es necesario
+//Código js tradicional
+
+
 //Obtiene la diferencia de años
 export function obtenerDiferenciaYear(year) {
   return new Date().getFullYear() - year;
@@ -22,4 +28,10 @@ export function calcularMarca(marca) {
   }
 
   return incremento;
+}
+
+
+//Calcula el tipo de seguro
+export function obtenerPlan(plan) {
+    return (plan === 'basico') ? 1.20 : 1.50;
 }
