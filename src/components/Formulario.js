@@ -52,7 +52,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Formulario = ({guardarResumen}) => {
+const Formulario = ({ guardarResumen, guardarCargando }) => {
   const [datos, guardarDatos] = useState({
     marca: "",
     year: "",
@@ -103,11 +103,19 @@ const Formulario = ({guardarResumen}) => {
     const incrementoPlan = obtenerPlan(plan);
     resultado = parseFloat(incrementoPlan * resultado).toFixed(2);
 
-    //Comentario: en el caso de "datos" no se hace falta poner a que se tiene que igualar porque ya definimos "datos" con anterioridad. Automaticamente se pasan las propiedades "marca", "year" y "plan"
-    guardarResumen({
-      cotizacion: resultado,
-      datos
-    })
+    guardarCargando(true);
+
+    setTimeout(() => {
+      //Elimina el spinner
+      guardarCargando(false);
+
+      //Pasa información al componente principal
+      guardarResumen({
+        //Comentario: en el caso de "datos" no se hace falta poner a que se tiene que igualar porque ya definimos "datos" con anterioridad. Automaticamente se pasan las propiedades "marca", "year" y "plan"
+        cotizacion: resultado,
+        datos,
+      });
+    }, 3000);
   };
 
   return (

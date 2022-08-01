@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import Resumen from "./components/Resumen";
+import Spinner from "./components/Spinner";
 
 import styled from "@emotion/styled";
 import Resultado from "./components/Resultado";
@@ -26,6 +27,8 @@ function App() {
     },
   });
 
+  const [cargando, guardarCargando] = useState(false);
+
   //extraer datos
   const { cotizacion, datos } = resumen;
 
@@ -33,14 +36,15 @@ function App() {
     <Contenedor>
       <Header titulo="Cotizador de seguro" />;
       <ContenedorFormulario>
-        <Formulario guardarResumen={guardarResumen} />
+        <Formulario
+          guardarResumen={guardarResumen}
+          guardarCargando={guardarCargando}
+        />
+        {cargando ? <Spinner /> : null}
         {/*Podría ser así, pero no queremos llenar todo de ternarios: {datos ? <Resumen /> : null} */}
-        <Resumen 
-          datos={datos}
-        />
-        <Resultado 
-          cotizacion={cotizacion}
-        />
+        <Resumen datos={datos} />
+
+        {!cargando ? <Resultado cotizacion={cotizacion} /> : null}
       </ContenedorFormulario>
     </Contenedor>
   );
