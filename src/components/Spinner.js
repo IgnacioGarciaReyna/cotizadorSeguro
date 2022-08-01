@@ -1,6 +1,8 @@
 import React from "react";
 import './Spinner.css'
 
+//Link https://tobiasahlin.com/spinkit/
+
 const Spinner = () => {
   return (
     <div className="sk-fading-circle">
